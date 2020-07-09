@@ -1,0 +1,23 @@
+<div class="container">
+  <div *ngFor="let sector of sectors; let i = index">
+    <div *ngIf="i % 2 == 0" class="row">
+      <div class="col-6 col-md-4">
+        <a
+          class="btn btn-light"
+          routerLink="/sectors/{{ sector }}"
+          routerLinkActive="active"
+          >{{ sector }}</a
+        >
+      </div>
+      <div class="col-6 col-md-4">
+        <a
+          *ngIf="i + 1 < sectors.length"
+          class="btn btn-light"
+          routerLink="/sectors/{{ sectors[i + 1] }}"
+          routerLinkActive="active"
+          >{{ sectors[i + 1] }}</a
+        >
+      </div>
+    </div>
+  </div>
+</div>

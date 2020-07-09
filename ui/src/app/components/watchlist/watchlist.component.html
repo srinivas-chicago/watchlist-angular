@@ -1,0 +1,59 @@
+<h3>Create New Watchlist</h3>
+
+<div>
+  <form [formGroup]="watchListForm" (ngSubmit)="onSubmit()">
+    <table>
+      <tr>
+        <td>Enter Name</td>
+        <td>
+          <input formControlName="name" />
+          <label
+            *ngIf="watchListForm.get('name').invalid && processValidation"
+            [ngClass]="'error'"
+          >
+            Name is required.
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button class="btn-dark">Create</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <br />
+
+  <div *ngIf="statusCode">
+    <div *ngIf="statusCode === 201" [ngClass]="'success'">
+      Watchlist added successfully.
+    </div>
+    <div *ngIf="statusCode === 409" [ngClass]="'success'">
+      Watchlist already exists.
+    </div>
+    <div *ngIf="statusCode === 200" [ngClass]="'success'">
+      Watchlist updated successfully.
+    </div>
+
+    <div *ngIf="statusCode === 500" [ngClass]="'error'">
+      Internal Server Error.
+    </div>
+  </div>
+</div>
+
+<table>
+  <tr>
+    <th>Watchlists</th>
+  </tr>
+  <tr *ngFor="let watchList of allWatchlists">
+    <td>
+      <a
+        class="btn btn-light"
+        [routerLink]="['/watchlists', watchList.id, 'items']"
+        [queryParams]="{ name: watchList.name }"
+        routerLinkActive="active"
+        >{{ watchList.name }}</a
+      >
+    </td>
+  </tr>
+</table>

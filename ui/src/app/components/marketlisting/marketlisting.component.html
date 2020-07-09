@@ -1,0 +1,34 @@
+<div>
+  <table class="mat-table">
+    <thead>
+      <tr class="mat-header-row">
+        <th class="mat-header-cell">Symbol</th>
+        <th class="mat-header-cell">Name</th>
+        <th class="mat-header-cell">Lastsale</th>
+        <th class="mat-header-cell">Marketcap</th>
+        <th class="mat-header-cell">Ipoyear</th>
+        <th class="mat-header-cell">Sector</th>
+        <th class="mat-header-cell">Industry</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="mat-row" *ngFor="let mktlisting of mktListings">
+        <td class="mat-cell">{{ mktlisting.symbol }}</td>
+        <td class="mat-cell">{{ mktlisting.name }}</td>
+        <td class="mat-cell">{{ mktlisting.lastsale }}</td>
+        <td class="mat-cell">{{ mktlisting.marketcap }}</td>
+        <td class="mat-cell">{{ mktlisting.ipoyear }}</td>
+        <td class="mat-cell">{{ mktlisting.sector }}</td>
+        <td class="mat-cell">{{ mktlisting.industry }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <mat-paginator
+    #paginator
+    [pageSizeOptions]="[10, 25, 100]"
+    [pageSize]="10"
+    [length]="totalElements"
+    (page)="nextPage($event)"
+  >
+  </mat-paginator>
+</div>

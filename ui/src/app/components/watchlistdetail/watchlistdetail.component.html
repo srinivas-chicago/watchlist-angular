@@ -1,0 +1,64 @@
+<h2>Watchlist: {{ watchList }}</h2>
+<h3>Create New WatchlistItem</h3>
+
+<div>
+  <form [formGroup]="watchListItemForm" (ngSubmit)="onSubmit()">
+    <table>
+      <tr>
+        <td>Enter Symbol</td>
+        <td>
+          <input formControlName="symbol" />
+          <label
+            *ngIf="watchListItemForm.get('symbol').invalid && processValidation"
+            [ngClass]="'error'"
+          >
+            Symbol is required.
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td>Enter Note</td>
+        <td>
+          <input formControlName="note" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button class="btn-dark">Create</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <br />
+
+  <div *ngIf="statusCode">
+    <div *ngIf="statusCode === 201" [ngClass]="'success'">
+      WatchlistItem added successfully.
+    </div>
+    <div *ngIf="statusCode === 409" [ngClass]="'success'">
+      WatchlistItem already exists.
+    </div>
+    <div *ngIf="statusCode === 200" [ngClass]="'success'">
+      WatchlistItem updated successfully.
+    </div>
+
+    <div *ngIf="statusCode === 500" [ngClass]="'error'">
+      Internal Server Error.
+    </div>
+  </div>
+</div>
+
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Note</th>
+  </tr>
+  <tr *ngFor="let watchListItem of watchlistItems">
+    <td>
+      {{ watchListItem.symbol }}
+    </td>
+    <td>
+      {{ watchListItem.note }}
+    </td>
+  </tr>
+</table>

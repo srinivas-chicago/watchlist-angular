@@ -1,0 +1,102 @@
+<div class="col-md-6">
+  <h2 class="text-center">Search</h2>
+  <form [formGroup]="searchFormGroup" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="sector">Sector</label>
+      <select formControlName="sector">
+        <option *ngFor="let sector of sectors"> {{ sector }}</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="marketcapmin">Market cap Min</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="marketcapmin"
+          id="marketcapmin"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="marketcapmax">Market Cap Max</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="marketcapmax"
+          id="marketcapmax"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="ipoyearmin">IPO Year Min</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="ipoyearmin"
+          id="ipoyearmin"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="ipoyearmax">IPO Year Max</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="ipoyearmax"
+          id="ipoyearmax"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="lastsalemin">Last Sale Min</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="lastsalemin"
+          id="lastsalemin"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="lastsalemax">Last Sale Max</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="lastsalemax"
+          id="lastsalemax"
+        />
+      </div>
+    </div>
+
+    <button class="btn btn-dark">Search</button>
+  </form>
+</div>
+<br />
+<table class="table">
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Name</th>
+      <th>Last Sale</th>
+      <th>Market Cap</th>
+      <th>IPO Year</th>
+      <th>Sector</th>
+      <th>Industry</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let mktListing of mktListings">
+      <td>{{ mktListing.symbol }}</td>
+      <td>{{ mktListing.name }}</td>
+      <td>{{ mktListing.lastsale }}</td>
+      <td>{{ mktListing.marketcap }}</td>
+      <td>{{ mktListing.ipoyear }}</td>
+      <td>{{ mktListing.sector }}</td>
+      <td>{{ mktListing.industry }}</td>
+    </tr>
+  </tbody>
+</table>
