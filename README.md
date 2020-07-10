@@ -9,7 +9,7 @@ symbol and Billion market cap value multipled by 1000 to represent everything in
 
 HomeController is the entry point
 
-Starting screen shows distinct sectors and a search screen
+Starting screen shows distinct sectors and the nav bar has options to explore, create a watchlist and few useful links under resources
 
 MarketListingsSpecification - used for forming queries
 
@@ -22,5 +22,7 @@ Based on the input parameters SearchQuery gets formed using the MarketListingsSp
 
 Based on the pagesize and requested page records are retrieved and sent back in the Model
 
-There are other methods to retrieve sector wise data by lastsale price and industry wise
+PortfolioController has the functionality for creating Portfolios/Watchlists and adding listings to the Watchlist.
+
+Angular code is under ui folder. The component names and service names are self explanatory
 
